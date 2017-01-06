@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="~/Content/Site.css" rel="stylesheet" />
+        <title>@ViewBag.Title</title>
+    </head>
+    <body>
+        <p class="title">@(ViewData["Name"] as string)</p>
+        <div class="Image_container">
+<img src="@Url.Action("RenderImage","Image",new {id=@ViewBag.Pointer})" width="1000" height="600" />
+</div>
+        <div class="arrows">
+            <ul>
+                @if ((int)ViewBag.Pointer > 0)
+                {
+                    <a id="back" href="@Url.Action("Index", "Image", new {id = @ViewBag.Pointer - 1})"> <img src="~/Content/Images/left-arrow.png" width="120" height="120"/> </a>
+                }
+                @if ((int)ViewBag.Pointer < (int)ViewBag.CatalogSize-1)
+                {
+                    <a id="forward" href="@Url.Action("Index", "Image", new {id = @ViewBag.Pointer + 1})"> <img src="~/Content/Images/right-arrow.png" width="120" height="120"/> </a>
+                }
+            </ul>
+        </div>
+
+    </body>
+    </html>
+
+

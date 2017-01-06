@@ -1,0 +1,12 @@
+﻿@model News.Models.ContactUsFormModel
+
+@{
+    ViewBag.Title = "Thank";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section TimeUp
+{
+    @Html.Action("AppUpTime", "RequestData")
+}
+<h2>Thanks @Model.UserName!</h2>
+

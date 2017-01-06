@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/app/myApp.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+<div class="menu">
+    @RenderSection("TimeUp", false)
+    <ul class="nav-bar">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("Image Galary", "Index", "Image")</li>
+        <li>@Html.ActionLink("Users", "Index", "User")</li>
+        <li>@Html.ActionLink("About Us", "AboutUs", "Home")</li>
+        <li>@Html.ActionLink("Contact Us", "ContactUs", "Home")</li>
+        <li>@Html.ActionLink("Registration", "Registration", "User")</li>
+    </ul>
+</div>
+<div>
+    @RenderBody()
+</div>
+<footer class="footer">
+    <p>&copy; @DateTime.Now.ToShortDateString() - Razor Lesson  @Html.ActionLink("RequestData","RequestData","RequestData")</p>
+</footer>
+</body>
+</html>

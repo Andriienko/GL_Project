@@ -1,0 +1,45 @@
+﻿@model News.Models.UserModel
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="registration">
+<h2>Registration</h2>
+<span>@ViewBag.RegistrationState</span>
+   @using (Html.BeginForm())
+   {
+       @Html.ValidationSummary()
+       <div class="registr-form">
+           <div>
+               @Html.LabelFor(x=>x.FirstName)
+               @Html.TextBoxFor(x=>x.FirstName)
+           </div>
+           <div>
+               @Html.LabelFor(x => x.LastName)
+               @Html.TextBoxFor(x => x.LastName)
+           </div>
+            <div>
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email)
+            </div>
+           <div>
+               @Html.LabelFor(x => x.Password)
+               @Html.EditorFor(x => x.Password)
+           </div>
+           <div>
+               @Html.LabelFor(x => x.ConfirmPassword)
+               @Html.EditorFor(x => x.ConfirmPassword)
+           </div>
+           <div>
+               @Html.LabelFor(x => x.BirthDate)
+               @Html.DropDownListFor(model => model.BirthDate.Day, Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
+               @Html.DropDownListFor(model => model.BirthDate.Month, Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
+               @Html.DropDownListFor(model => model.BirthDate.Year, Enumerable.Range(1900, 114).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
+           </div>
+           <div>
+               <input type="submit" value="Register"/>
+           </div>
+       </div>
+   }
+</div>

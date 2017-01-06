@@ -1,0 +1,35 @@
+﻿@using News.Models
+@model ContactUsFormModel
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section TimeUp
+{
+    @Html.Action("AppUpTime", "RequestData")
+}
+<h1>ContactUs</h1>
+<div class="form">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary()<br/>
+        <div class="fields">
+            <div>
+                @Html.LabelFor(x => x.UserName)
+                @Html.TextBoxFor(x => x.UserName, new { @Value = "User" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email, new { @Value = "gl@gmail.com" })
+            </div>
+            <div>
+                @Html.LabelFor(x => x.Coments)<br/>
+                @Html.TextAreaFor(x => x.Coments)
+            </div>
+
+            <div class="submit">
+                <input type="submit" value="Submit" />
+            </div>
+        </div>
+    }
+</div>
