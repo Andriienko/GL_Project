@@ -1,4 +1,4 @@
-﻿@model News.Models.RegistrationViewModel
+﻿@model News.Models.UserModel
 
 <span>@ViewBag.EditingState</span>
 @using (Ajax.BeginForm(new AjaxOptions {OnSuccess = "reloadUsers" }))
@@ -11,22 +11,32 @@
             <td>@Html.LabelFor(x => x.LastName)</td>
             <td>@Html.LabelFor(x => x.Email)</td>
             <td>@Html.LabelFor(x => x.Password)</td>
-            <td>@Html.LabelFor(x => x.Day)</td>
+            <td>@Html.LabelFor(x => x.ConfirmPassword)</td>
+            <td>@Html.LabelFor(x => x.BirthDate)</td>
         </tr></thead>
         <tbody>
         <tr> <td>   @Html.TextBoxFor(x => x.FirstName)     </td>
             <td>    @Html.TextBoxFor(x => x.LastName)    </td>
             <td>    @Html.TextBoxFor(x => x.Email)    </td>
             <td>    @Html.EditorFor(x => x.Password)    </td>
-            <td> @Html.DropDownListFor(model => model.Day, Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
-                @Html.DropDownListFor(model => model.Month, Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
-                @Html.DropDownListFor(model => model.Year, Enumerable.Range(1900, 114).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
+            <td>    @Html.EditorFor(x => x.ConfirmPassword)    </td>
+           @if (ViewBag.IsRegistered)
+           {
+            <td> @Html.DisplayFor(x => x.BirthDate)</td>
+           }
+           else
+           {
+            <td>
+                @Html.DropDownListFor(model => model.BirthDate.Day, Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
+                @Html.DropDownListFor(model => model.BirthDate.Month, Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
+                @Html.DropDownListFor(model => model.BirthDate.Year, Enumerable.Range(1900, 114).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
             </td>
+           }
         </tr>
         </tbody>
     </table>
     <input type="submit" value="Save" />
 }
-<script src="~/Scripts/app/myApp.js"></script>
+
 
 

@@ -70,14 +70,15 @@ namespace News.Controllers
                 var user = UsersDB.GetAllUsers().FirstOrDefault(x => x.UserId == id);
                 if (user != null)
                 {
-                    return PartialView(new RegistrationViewModel(user));
+                    ViewBag.IsRegistered = true;
+                    return PartialView(user);
                 }
             }
             ViewBag.EditingState = "User not found!";
             return PartialView();
         }
         [HttpPost]
-        public ActionResult Details([Bind(Exclude = "")]RegistrationViewModel userModel)
+        public ActionResult Details(UserModel userModel)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +89,7 @@ namespace News.Controllers
                     user.LastName = userModel.LastName;
                     user.Email = userModel.Email;
                     user.Password = userModel.Password;
-                    user.BirthDate = new DateTime(userModel.Year, userModel.Month, userModel.Day);
+                    user.ConfirmPassword = userModel.ConfirmPassword;
                     ViewBag.EditingState = "Saved!";
                 }
                 else

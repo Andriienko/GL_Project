@@ -1,7 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "News";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Scripts
+{
+    <script src="~/Scripts/app/news.js"></script>
+}
+<div class="container-for-news">
 <h1>News</h1>
     <div id="News">
 
@@ -12,17 +17,19 @@
 {
     @Html.Action("AppUpTime", "RequestData")    
 }
+<div class="form-for-news">
 @using (Ajax.BeginForm(new AjaxOptions { Url = Url.Action("Add","News"),OnSuccess = "insertNews" }))
 {
     for (int i = 0; i < 3; i++)
     {
         <fieldset>
             <legend>News @(i + 1)</legend>
-            <div><label>Topic:</label>@Html.Editor("[" + i + "].Tittle")</div>
-            <div><label>Text:</label>@Html.Editor("[" + i + "].Content")</div>
+            <div class="Topic"><label>Topic:</label>@Html.Editor("[" + i + "].Tittle")</div>
+            <div class="Content"><label>Text:</label>@Html.Editor("[" + i + "].Content")</div>
         </fieldset>
     }
     <input type="submit" value="Add" />
 }
-
+</div>
+</div>
 

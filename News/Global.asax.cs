@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using News.Infrastructure;
 using News.Models;
+using System.Web.Optimization;
 
 namespace News
 {
@@ -19,6 +20,7 @@ namespace News
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ViewEngines.Engines.Add(new RequestDataViewEngine());
             ModelBinders.Binders.Add(typeof(UserModel),new DateBinder());
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
